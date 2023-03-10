@@ -391,7 +391,7 @@ class ClaService {
         args.gist_version = gist.data.history[0].version
         args.onDates = [new Date()]
         if (args.number) {
-            const pullRequest = (await this._getPR(args.owner, args.repo, args.number, item.token)).data
+            const pullRequest = this._getPR(args.owner, args.repo, args.number, item.token).data
             args.onDates.push(new Date(pullRequest.created_at))
         }
 
@@ -465,7 +465,7 @@ class ClaService {
         args.gist_version = gist.data.history[0].version
 
         // logger.debug(`checkPullRequestSignatures-->getPR for the repo ${args.owner}/${args.repo}`)
-        const pullRequest = (await this._getPR(args.owner, args.repo, args.number, item.token)).data
+        const pullRequest = this._getPR(args.owner, args.repo, args.number, item.token).data
         if (!pullRequest) {
             throw new Error('No pull request found')
         }

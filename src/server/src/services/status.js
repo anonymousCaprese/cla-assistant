@@ -156,7 +156,7 @@ const getPullRequestHeadShaIfNeeded = async (args) => {
         if (args.sha) {
             return args
         }
-        const pullRequest = (await getPR(args)).data
+        const pullRequest = getPR(args).data
         args.sha = pullRequest.head.sha
         return args
     } catch (error) {
@@ -191,7 +191,7 @@ class StatusService {
         logger.debug(`StatusService-->update for the repo ${args.owner}/${args.repo}/pull/${args.number}`)
         if (args && !args.sha) {
             try {
-                const resp = (await getPR(args)).data
+                const resp = getPR(args).data
                 if (!resp || resp.message == 'Not found') {
                     return
                 }
